@@ -11,7 +11,13 @@
 </head>
 
 <body>
-    <article>
+    <?php foreach ($posts as $post) : ?>
+        <article>
+            <h1><a href="/posts/<?= $post->slug ?>"><?= $post->title; ?></a></h1>
+            <div><?= $post->excerpt; ?></div>
+        </article>
+    <?php endforeach ?>
+    <!-- <article>
         <h1><a href="/posts/my-first-post">My First Post</a></h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt nemo dolore sunt eaque, maiores quae earum cupiditate aperiam nobis dignissimos rem tempora, ut officiis ipsam assumenda repellat at est nulla!
             Dicta debitis ad in enim similique hic esse delectus necessitatibus saepe, quidem consequatur modi laboriosam eaque consequuntur, assumenda fugiat deserunt quibusdam maxime neque iste, rerum dolor? Neque nobis consectetur facere!
@@ -19,8 +25,8 @@
             Velit voluptatum nulla alias. Repudiandae, fugiat? Asperiores minus iusto deserunt perferendis dignissimos eaque dolorum, autem, corporis architecto ipsum cum corrupti ad beatae repellat amet ratione sunt hic doloremque soluta culpa?
             Consequatur est quia voluptatum rem ex libero doloremque assumenda nobis excepturi enim soluta ipsa distinctio, minima cum modi labore tempore ducimus aliquid accusantium porro, odit quaerat veniam. Fugiat, labore! Iste!</p>
 
-    </article>
-    <article>
+    </article> -->
+    <!-- <article>
         <h1><a href="/posts/my-second-post"> Second Post</a></h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt nemo dolore sunt eaque, maiores quae earum cupiditate aperiam nobis dignissimos rem tempora, ut officiis ipsam assumenda repellat at est nulla!
             Dicta debitis ad in enim similique hic esse delectus necessitatibus saepe, quidem consequatur modi laboriosam eaque consequuntur, assumenda fugiat deserunt quibusdam maxime neque iste, rerum dolor? Neque nobis consectetur facere!
@@ -35,7 +41,7 @@
             Nam commodi labore delectus cupiditate vero in dolorem quo quia placeat quis quae dolore illo quos facilis cumque aliquam est aspernatur fugit vitae saepe distinctio, adipisci provident corporis! Voluptatum, nesciunt.
             Velit voluptatum nulla alias. Repudiandae, fugiat? Asperiores minus iusto deserunt perferendis dignissimos eaque dolorum, autem, corporis architecto ipsum cum corrupti ad beatae repellat amet ratione sunt hic doloremque soluta culpa?
             Consequatur est quia voluptatum rem ex libero doloremque assumenda nobis excepturi enim soluta ipsa distinctio, minima cum modi labore tempore ducimus aliquid accusantium porro, odit quaerat veniam. Fugiat, labore! Iste!</p>
-    </article>
+    </article> -->
 </body>
 
 </html>
