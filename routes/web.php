@@ -1,6 +1,10 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
+use Illuminate\Support\Facades\File;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,16 +18,29 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('posts',);
+    $posts = Post::all();
+
+    $files =  File::files(resource_path("posts/"));
+
+    $posts = collect($files)->map(function ($file) {
+        $document = YamlFrontMatter::parseFile($file);
+
+        return new Post(
+            $document->title,
+            $document->excerpt,
+            $document->date,
+            $document->body(),
+            $document->slug
+        );
+    });
+
+    return view('posts', [
+        'posts' => $posts
+    ]);
 });
 
 Route::get('/posts/{post}', function ($slug) {
-    $path = __DIR__ . "/../resources/posts/{$slug}.html";
-    if (!file_exists($path)) {
-        return redirect('/');
-    }
-
-    $post = cache()->remember("posts.{$slug}", now()->addMinutes(20), fn () =>  file_get_contents($path));
+    $post = Post::find($slug);
 
     return view('post', ['post' => $post]);
 })->where('post', '[A-z_\-]+');
